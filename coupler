@@ -1,0 +1,46 @@
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+def drange(start, stop, step):
+    r=start
+    while r<stop:
+          yield r                                                                                                                                            
+          r+=step
+x1=[]
+y1=[]
+x2=[]
+y2=[]
+a=int(input("Enter length of link 1:"))
+b=int(input("Enter length of link 2:"))
+c=int(input("Enter length of link 3:"))
+d=int(input("Enter length of link 4:"))
+l=int(input("Enter the length:"))
+alpha1=int(input("Enter angle:"))
+alpha=np.pi*alpha1/180
+k1=(d/a)
+k2=(d/c)
+k3=((a**2)-(b**2)+(c**2)+(d**2))/(2*a*c)
+k4=(d/b)
+k5=(c**2-a**2-b**2-d**2)/(2*a*b)
+
+for th in drange (0, 6.28, 0.1):
+    A=((1-k2)*np.cos(th))+k3-k1
+    B=-2*np.sin(th)
+    C=k1+k3-((1+k2)*np.cos(th))
+    p=(((B*B)-(4*A*C))**0.5)
+    fi= 2*np.arctan((-B+p)/(2*A))
+    D=(((k4+1)*np.cos(th))+(k5-k1))
+    E=(-2*np.sin(th))
+    F=(((k4-1)*np.cos(th)+(k1+k5)))
+    q=(((E**2)-(4*D*F))**0.5)
+    gi=2*np.arctan((-E+q)/(2*D))
+    x=d+(c*np.cos(fi))
+    x1.append(x)
+    y=c*np.sin(fi)
+    y1.append(y)
+    xp=a*np.cos(th)+l*np.cos(alpha+gi)
+    x2.append(xp)
+    yp=a*np.sin(th)+l*np.sin(alpha+gi)
+    y2.append(yp)
+#plt.plot(x1,y1)
+plt.plot(x2,y2)
