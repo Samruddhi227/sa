@@ -1,0 +1,31 @@
+import math
+import numpy as np
+import matplotlib.pyplot as plt
+def drange(start, stop, step):
+    r=start
+    while r<stop:
+          yield r                                                                                                                                            
+          r+=step
+x1=[]
+y1=[]          
+a=int(input("Enter length of link 1:"))
+b=int(input("Enter length of link 2:"))
+c=int(input("Enter length of link 3:"))
+d=int(input("Enter length of link 4:"))
+
+k1=(d/a)
+k2=(d/c)
+k3=((a**2)-(b**2)+(c**2)+(d**2))/(2*a*c)
+
+for th in drange (0, 6.28, 0.1):
+    A=((1-k2)*np.cos(th))+k3-k1
+    B=-2*np.sin(th)
+    C=k1+k3-((1+k2)*np.cos(th))
+    p=(((B**2)-(4*A*C))**0.5)
+    fi= 2*np.arctan((-B+p)/(2*A))
+    x=d+(c*np.cos(fi))
+    x1.append(x)
+    y=c*np.sin(fi)
+    y1.append(y)  
+plt.plot(x1,y1)
+
